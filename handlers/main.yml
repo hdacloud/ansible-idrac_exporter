@@ -1,7 +1,7 @@
 ---
-- name: restart <<APPLICATION>>
+- name: restart idrac_exporter
   become: true
   systemd:
     daemon_reload: true
-    name: <<APPLICATION>>
+    name: idrac_exporter
     state: restarted

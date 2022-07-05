@@ -1,30 +1,52 @@
-<p><img src="http://pngimg.com/uploads/skeleton/skeleton_PNG42642.png" alt="skeleton logo" title="graph" align="right" height="60" /></p>
+# Ansible Role: idrac_exporter
 
-# Cloud Alchemy Ansible Role Skeleton
-
+[![Build Status](https://travis-ci.com/cloudalchemy/ansible-idrac_exporter.svg?branch=master)](https://travis-ci.com/cloudalchemy/ansible-idrac_exporter)
 [![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT)
+[![Ansible Role](https://img.shields.io/badge/ansible%20role-cloudalchemy.idrac_exporter-blue.svg)](https://galaxy.ansible.com/cloudalchemy/idrac_exporter/)
+[![GitHub tag](https://img.shields.io/github/tag/cloudalchemy/ansible-idrac_exporter.svg)](https://github.com/cloudalchemy/ansible-idrac_exporter/tags)
 
 ## Description
 
-Skeleton to create new ansible roles similar to other Cloud Alchemy roles.
+Deploy [idrac_exporter](https://github.com/prometheus/idrac_exporter) using ansible.
 
-## How to use it
+## Requirements
 
-To create a new role, just follow a couple of easy steps:
-1. Create new rpository using this one as a template by clicking [here](https://github.com/cloudalchemy/skeleton/generate)
-1. Clone repository locally
-1. Run `init.sh` with required parameters
-1. Commit your changes
+- Ansible >= 2.7 (It might work on previous versions, but we cannot guarantee it)
 
-## Result
+## Role Variables
 
-After running `init.sh` it will convert this repo into a directory structure with everything needed to start 
-developing new Cloud Alchemy ansible role.
+All variables which can be overridden are stored in [defaults/main.yml](defaults/main.yml) file as well as in table below.
 
-## Warnings
+| Name           | Default Value | Description                        |
+| -------------- | ------------- | -----------------------------------|
+| `idrac_exporter_web_listen_address` | "0.0.0.0:9348" | Address on which idrac_exporter will listen |
 
-- README.md file is overwritten with ROLE_README.md
-- `init.sh` file is removed after being used
+## Example
+
+### Playbook
+
+Use it in a playbook as follows:
+```yaml
+- hosts: all
+  roles:
+    - cloudalchemy.idrac_exporter
+```
+
+## Local Testing
+
+The preferred way of locally testing the role is to use Docker and [molecule](https://github.com/ansible-community/molecule) (v3.x). You will have to install Docker on your system. See "Get started" for a Docker package suitable to for your system. Running your tests is as simple as executing `molecule test`.
+
+## Continuous Integration
+
+Combining molecule and circle CI allows us to test how new PRs will behave when used with multiple ansible versions and multiple operating systems. This also allows use to create test scenarios for different role configurations. As a result we have a quite large test matrix which can take more time than local testing, so please be patient.
+
+## Contributing
+
+See [contributor guideline](CONTRIBUTING.md).
+
+## Troubleshooting
+
+See [troubleshooting](TROUBLESHOOTING.md).
 
 ## License
 

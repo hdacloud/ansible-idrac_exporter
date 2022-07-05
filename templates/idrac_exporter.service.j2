@@ -1,0 +1,19 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=idrac_exporter
+After=network-online.target
+StartLimitInterval=0
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User={{ idrac_exporter_system_user }}
+Group={{ idrac_exporter_system_group }}
+ExecStart=/usr/local/bin/idrac_exporter -config /etc/idrac_exporter/idrac.yaml
+SyslogIdentifier=idrac_exporter
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

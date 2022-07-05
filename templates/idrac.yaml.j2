@@ -1,0 +1,11 @@
+---
+{{ ansible_managed | comment }}
+address: 127.0.0.1 # Listen address XXX fixme
+port: 9348         # Listen port XXX fixme
+timeout: 10        # HTTP timeout (in seconds) for Redfish API calls
+hosts:
+  {{ idrac_exporter_credentials | to_nice_yaml(indent=2,sort_keys=False) | indent(2,False) }}
+metrics:
+  - system
+  - sensors
+  - power

@@ -1,9 +1,25 @@
 ---
-- name: Copy the <<APPLICATION>> systemd service file
+- name: Create node_exporter config directory
+  file:
+    path: "/etc/idrac_exporter"
+    state: directory
+    owner: root
+    group: root
+    mode: u+rwX,g+rwX,o=rX
+
+- name: Copy the idrac_exporter config file
   template:
-    src: <<APPLICATION>>.service.j2
-    dest: /etc/systemd/system/<<APPLICATION>>.service
+    src: idrac.yaml.j2
+    dest: /etc/idrac_exporter/idrac.yaml
+    owner: root
+    group: "{{ idrac_exporter_system_group }}"
+    mode: 0640
+
+- name: Copy the idrac_exporter systemd service file
+  template:
+    src: idrac_exporter.service.j2
+    dest: /etc/systemd/system/idrac_exporter.service
     owner: root
     group: root
     mode: 0644
-  notify: restart <<APPLICATION>>
+  notify: restart idrac_exporter

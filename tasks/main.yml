@@ -6,31 +6,31 @@
     - "{{ ansible_distribution | lower }}.yml"
     - "{{ ansible_os_family | lower }}.yml"
   tags:
-    - <<APPLICATION>>_install
-    - <<APPLICATION>>_configure
-    - <<APPLICATION>>_run
+    - idrac_exporter_install
+    - idrac_exporter_configure
+    - idrac_exporter_run
 
 - import_tasks: preflight.yml
   tags:
-    - <<APPLICATION>>_install
-    - <<APPLICATION>>_configure
-    - <<APPLICATION>>_run
+    - idrac_exporter_install
+    - idrac_exporter_configure
+    - idrac_exporter_run
 
 - import_tasks: install.yml
   become: true
   tags:
-    - <<APPLICATION>>_install
+    - idrac_exporter_install
 
 - import_tasks: configure.yml
   become: true
   tags:
-    - <<APPLICATION>>_configure
+    - idrac_exporter_configure
 
-- name: Ensure <<APPLICATION>> is enabled on boot
+- name: Ensure idrac_exporter is enabled on boot
   become: true
   systemd:
     daemon_reload: true
-    name: <<APPLICATION>>
+    name: idrac_exporter
     enabled: true
   tags:
-    - <<APPLICATION>>_run
+    - idrac_exporter_run

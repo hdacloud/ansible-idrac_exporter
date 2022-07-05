@@ -8,5 +8,5 @@ go_arch_map:
 
 go_arch: "{{ go_arch_map[ansible_architecture] | default(ansible_architecture) }}"
 
-<<APPLICATION>>_system_user: "<<APPLICATION>>"
-<<APPLICATION>>_system_group: "<<APPLICATION>>"
+idrac_exporter_system_user: "idrac_exporter"
+idrac_exporter_system_group: "idrac_exporter"
